@@ -1,32 +1,32 @@
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
+const filterToTitle = {
+  'front-page': 'Front Page',
+  latest: 'Latest Submissions',
+  active: 'Active',
+  'show-hn': 'Show HN',
+  'ask-hn': 'Ask HN'
+};
+
+export default Ember.Controller.extend({
   queryParams: ['filter', 'page'],
 
   filter: 'front-page',
   page: null,
 
-  hasContent: false,
+  stories: Ember.computed.alias('model'),
 
-  filterName: function() {
-    switch( this.get('filter') ) {
-      case 'front-page':
-        return 'Front Page';
+  filterName: Ember.computed('filter', function() {
+    return filterToTitle[this.get('filter')] || '';
+  }),
 
-      case 'latest':
-        return 'Latest Submissions';
+  contentClasses: Ember.computed('stories.length', function() {
+    let classes = ['app-content'];
 
-      case 'active':
-        return 'Active';
-
-      case 'show-hn':
-        return 'Show HN';
-
-      case 'ask-hn':
-        return 'Ask HN';
-
-      case 'jobs':
-        return 'Jobs';
+    if (this.get('stories.length')) {
+      classes.pushObject('active');
     }
-  }.property('filter')
+
+    return classes.join(' ');
+  })
 });

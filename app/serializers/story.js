@@ -5,21 +5,20 @@ import {
 } from "hn-reader/extractors/story";
 
 export default DS.RESTSerializer.extend({
+  isNewSerializerAPI: true,
 
-  extractSingle(store, type, payload, id) {
+  normalizeSingleResponse(store, type, payload, id) {
     payload = parseSingle(payload);
 
-    this.extractMeta(store, type, payload);
+    store._setMetadataFor('story', this.extractMeta(store, type, payload));
 
     return this._super(store, type, payload, id);
   },
 
-  extractArray(store, type, payload) {
+  normalizeArrayResponse(store, type, payload) {
     payload = parseArray(payload);
 
-    this.extractMeta(store, type, payload);
-
+    store._setMetadataFor('story', this.extractMeta(store, type, payload));
     return this._super(store, type, payload);
   }
-
 });

@@ -2,12 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   queryParams: {
-    highlight: {
-      replace: true
-    }
+    highlight: { replace: true }
   },
 
-  model: function() {
+  model() {
     var story = this.modelFor('stories.show');
 
     if (story.get('isInternal') && story.get('body')) {

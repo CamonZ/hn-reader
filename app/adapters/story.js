@@ -8,7 +8,7 @@ export default DS.Adapter.extend({
   proxy: config.APP.HACKERNEWS_CORS_PROXY,
   host: config.APP.HACKERNEWS_HOST,
 
-  find(store, type, id) {
+  findRecord(store, type, id) {
     return new Ember.RSVP.Promise( (resolve, reject) => {
 
       var xhr = new XMLHttpRequest();
@@ -35,9 +35,9 @@ export default DS.Adapter.extend({
     });
   },
 
-  findAll(store, type) { this.findQuery(store, type); },
+  findAll(store, type) { this.query(store, type); },
 
-  findQuery(store, type, query = {}) {
+  query(store, type, query = {}) {
     return new Ember.RSVP.Promise( (resolve, reject) => {
 
       var xhr = new XMLHttpRequest();

@@ -4,12 +4,12 @@
 
 <div class="app-sidebar app-panel">
   <ol class="stories">
-    {{#each story in controller}}
+    {{#each stories as |story|}}
       {{story-card tagName="li" story=story}}
     {{/each}}
   </ol>
 </div>
 
-<div {{bind-attr class=":app-content hasContent:active"}}>
+<div class={{contentClasses}}>
   {{outlet}}
 </div>

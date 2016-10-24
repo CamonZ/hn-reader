@@ -14,7 +14,7 @@ FakeXMLHttpRequest.prototype._setResponseBody = function(body) {
   _super.call(this, body);
 };
 
-export default function(prefix = "") {
+export default function() {
   return new Pretender(function() {
 
     var server = this;

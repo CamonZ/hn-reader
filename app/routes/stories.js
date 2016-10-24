@@ -6,10 +6,10 @@ export default Ember.Route.extend({
   },
 
   model(params) {
-    return this.store.find('story', params);
+    return this.store.query('story', params);
   },
 
-  afterModel() {
+  afterModel() { // TODO: move this elsewhere. This shouldn't be on the route.
     Ember.run.schedule('afterRender', () => Ember.$('.app-sidebar').scrollTop(0) );
   }
 });

@@ -61,8 +61,9 @@ function cleanMarkup(html) {
 }
 
 export default DS.RESTSerializer.extend({
+  isNewSerializerAPI: true,
 
-  extractSingle(store, type, payload, id) {
+  normalizeSingleResponse(store, type, payload, id) {
     var article = {
       id: id,
 
