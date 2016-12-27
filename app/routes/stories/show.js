@@ -17,12 +17,8 @@ export default Ember.Route.extend({
     }
   },
 
-  beforeModel() {
-    this.controllerFor('stories').set('hasContent', true);
-  },
-
   model(params) {
-    return this.store.fetch('story', params.story_id);
+    return this.store.findRecord('story', params.story_id, { reload: true });
   },
 
   afterModel(story) {
@@ -35,14 +31,6 @@ export default Ember.Route.extend({
       // Pre-fetch the article here so it stays on the same "loading" screen
       return this.store.find( 'article', story.get('url') );
     }
-  },
-
-  activate() {
-    this.controllerFor('stories').set('hasContent', true);
-  },
-
-  deactivate() {
-    this.controllerFor('stories').set('hasContent', false);
   },
 
   shouldAnimate(transition) {

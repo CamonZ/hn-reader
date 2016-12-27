@@ -1,0 +1,40 @@
+<div class="app-bar">
+  <div class="gutter" {{action 'requestExpand'}}>
+    {{app-icon isExpanded=isExpanded}}
+  </div>
+  <h1>Hacker News</h1>
+</div>
+
+<div class="app-bar-shadow"></div>
+
+<nav class="app-nav app-panel nav-links">
+  {{#link-to "stories" (query-params filter="front-page") title="Front Page" class='front-page-link'}}
+    <div class="gutter"><i class="icon-news"></i></div> Front Page
+  {{/link-to}}
+
+  {{#link-to "stories" (query-params filter="latest") title="Latest Submissions" class='latest-link'}}
+    <div class="gutter"><i class="icon-hour-glass"></i></div> Latest Submissions
+  {{/link-to}}
+
+  {{#link-to "stories" (query-params filter="active") title="Active" class='active-link'}}
+    <div class="gutter"><i class="icon-thermometer"></i></div> Active
+  {{/link-to}}
+
+  {{#link-to "stories" (query-params filter="show-hn") title="Show HN" class='show-hn-link'}}
+    <div class="gutter"><i class="icon-modern-mic"></i></div> Show HN
+  {{/link-to}}
+
+  {{#link-to "stories" (query-params filter="ask-hn") title="Ask HN" class='ask-hn-link'}}
+    <div class="gutter"><i class="icon-help"></i></div> Ask HN
+  {{/link-to}}
+
+  {{#link-to "stories" (query-params filter="jobs") title="Jobs" class='jobs-link'}}
+    <div class="gutter"><i class="icon-suitcase"></i></div> Jobs
+  {{/link-to}}
+
+  <div class="spacer"></div>
+
+  {{#link-to "preferences" title="Preferences" class='preferences-link'}}
+    <div class="gutter"><i class="icon-tools"></i></div> Preferences
+  {{/link-to}}
+</nav>

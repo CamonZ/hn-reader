@@ -6,9 +6,9 @@ export default DS.Model.extend({
   quality:   DS.attr('number'),
   submitter: DS.attr('string'),
   submitted: DS.attr('string'),
-  parent:    DS.belongsTo('comment', { inverse: 'comments' }),
-  comments:  DS.hasMany('comment', { inverse: 'parent' }),
-  story:     DS.belongsTo('story'),
+  parent:    DS.belongsTo('comment', { inverse: 'comments', async: false }),
+  comments:  DS.hasMany('comment', { inverse: 'parent', async: false }),
+  story:     DS.belongsTo('story', { async: false }),
 
   descendantsCount: function() {
     return this.get('comments').reduce( (count, comment) => count + comment.get('descendantsCount'), this.get('comments.length') );

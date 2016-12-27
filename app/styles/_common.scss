@@ -24,10 +24,6 @@ body {
   }
 }
 
-.rotate-cw {
-  @include transform(rotate(90deg));
-}
-
 .small-screen-only {
   display: none;
 }
